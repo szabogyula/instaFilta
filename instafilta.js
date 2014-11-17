@@ -53,22 +53,25 @@
             
             $targets.each(function() {
                 
-                var $item = $(this),
-                    originalText = $item.text(),
+                var $item = $(this),                    
+                    //originalText = $item.text(),
+                    originalText = $item.data('title'),
                     targetText = settings.caseSensitive ? originalText : originalText.toLowerCase(),
                     matchedIndex = targetText.indexOf(term),
-                    matchedText = null;
+                    matchedText = null;             
+                //console.log(originalText);
 
-                if (!$item.data('originalText')) { 
-                    $item.data('originalText', originalText); 
+                /*if (!$item.data('originalText')) { 
+                    $item.data('originalText', originalText);
                 }
 
-                else { $item.html($item.data('originalText')); }
+                else { $item.html($item.data('originalText')); }                                
+                */
                 
-                if (matchedIndex >= 0 && settings.markMatches) {
+                /*if (matchedIndex >= 0 && settings.markMatches) {
                     matchedText = originalText.substring(matchedIndex, matchedIndex + term.length);
                     $item.html(originalText.replace(matchedText, '<span class="' + settings.matchCssClass + '">' + matchedText + '</span>'));
-                }
+                }*/
 
                 $item.attr('data-instafilta-hide', (settings.beginsWith && matchedIndex !== 0) || matchedIndex < 0 ? 'true' : 'false');
             });
